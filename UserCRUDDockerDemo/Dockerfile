@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY target/UserCRUDDockerDemo-0.0.1-SNAPSHOT.jar /app/
 
-RUN mvn package
+# RUN mvn package
 
 EXPOSE 8080
 

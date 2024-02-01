@@ -1,18 +1,23 @@
 node {
-  stage('SCM') {
-    checkout scm
-  }
-  stage('SonarQube Analysis') {
-    def mvnHome = tool 'maven3';
-    withSonarQubeEnv('your-sonarqube-server-id') {
-      script {
-        // Provide the full path to the sonar.java.binaries property
-        def sonarScannerCmd = "${mvnHome}/bin/mvn clean verify sonar:sonar " +
-                             "-Dsonar.projectKey=rest-docker-demo " +
-                             "-Dsonar.projectName='rest-docker-demo' " +
-                             "-Dsonar.java.binaries=${WORKSPACE}/target/classes"
-        sh sonarScannerCmd
-      }
+    stage('SCM') {
+        checkout scm
     }
-  }
+
+    stage('Build') {
+        // Your build steps here, for example, Maven build
+        sh 'mvn clean package'
+    }
+
+    stage('SonarQube Analysis') {
+        def mvnHome = tool 'maven3'
+        withSonarQubeEnv() {
+            script {
+                // Specify the path to compiled Java classes
+                def javaBinaries = "${WORKSPACE}/target/classes"
+
+                // Run SonarQube analysis with specified Java binaries and exclude JAR files
+                sh "${mvnHome}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=rest-docker-demo -Dsonar.projectName='rest-docker-demo' -Dsonar.java.binaries=${javaBinaries} -Dsonar.exclusions=**/*.jar"
+            }
+        }
+    }
 }

@@ -19,7 +19,7 @@ node {
             steps {
                 script {
                     def mvnHome = tool 'maven3'
-                    withSonarQubeEnv('sonar-scanner') {
+                    withSonarQubeEnv() {
                         // Specify the path to compiled Java classes
                         def javaBinaries = "${WORKSPACE}/target/classes"
 

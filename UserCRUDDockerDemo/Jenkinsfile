@@ -1,11 +1,33 @@
-node {
-  stage('SCM') {
-    checkout scm
-  }
-  stage('SonarQube Analysis') {
-    def mvn = tool 'maven3';
-    withSonarQubeEnv() {
-		sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=rest-docker-demo -Dsonar.projectName='rest-docker-demo' -Dsonar.java.binaries=UserCRUDDockerDemo/target/classes"
-	}
-  }
+pipeline {
+    agent any
+    
+    stages {
+        stage('SCM') {
+            steps {
+                checkout scm
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                // Your build steps here, for example, Maven build
+                sh 'mvn clean package'
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    def mvnHome = tool 'maven3'
+                    withSonarQubeEnv('sonar-scanner') {
+                        // Specify the path to compiled Java classes
+                        def javaBinaries = "${WORKSPACE}/target/classes"
+
+                        // Run SonarQube analysis with specified Java binaries
+                        sh "${mvnHome}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=rest-demosonar.projectName=rest-demo -Dsonar.projectVersion=1 -Dsonar.sources=./src -Dsonar.java.binaries=${javaBinaries} -Dsonar.host.url=http://54.208.147.33:9000"
+                    }
+                }
+            }
+        }
+    }
 }

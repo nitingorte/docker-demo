@@ -3,7 +3,6 @@ node {
     checkout scm
   }
   stage('SonarQube Analysis') {
-<<<<<<< HEAD
     def mvnHome = tool 'maven3';
     withSonarQubeEnv('your-sonarqube-server-id') {
       script {
@@ -14,11 +13,6 @@ node {
                              "-Dsonar.java.binaries=${WORKSPACE}/target/classes"
         sh sonarScannerCmd
       }
-=======
-    def mvn = tool 'maven3';
-    withSonarQubeEnv() {
-      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=rest-docker-demo -Dsonar.projectName='rest-docker-demo'"
->>>>>>> parent of 667a982... Jenkinsfile updated
     }
   }
 }

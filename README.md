@@ -71,7 +71,7 @@ job --> Configuration
 wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.3.0.82913.zip
 sudo apt install unzip
 unzip sonarqube-10.3.0.82913.zip
-cd sonarqube-10.3.0.82913.zip/bin/linux-x86-64/
+cd sonarqube-10.3.0.82913/bin/linux-x86-64/
 ./sonar.sh console
 ```
 # update security inbound rules
@@ -79,10 +79,6 @@ cd sonarqube-10.3.0.82913.zip/bin/linux-x86-64/
 
 # sonarqube 
 1. login to http://[ec2-public-ip]:9000 with admin as default username & password.
-2. 
-
-
-
 
 
 

@@ -13,7 +13,7 @@ node {
         withSonarQubeEnv() {
             script {
                 // Specify the path to compiled Java classes
-                def javaBinaries = "${WORKSPACE}/target/classes"
+                def javaBinaries = "${WORKSPACE}/UserCRUDDockerDemo/target/classes"
 
                 // Run SonarQube analysis with specified Java binaries and exclude JAR files
                 sh "${mvnHome}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=rest-docker-demo -Dsonar.projectName='rest-docker-demo' -Dsonar.java.binaries=${javaBinaries} -Dsonar.exclusions=**/*.jar"

@@ -64,7 +64,20 @@ job --> Configuration
   Maven Version --> select
   Goals --> clean install -DskipTests
 
+# sonarqube install
 
+```
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.3.0.82913.zip
+sudo apt install unzip
+unzip sonarqube-10.3.0.82913.zip
+cd sonarqube-10.3.0.82913.zip/bin/linux-x86-64/
+./sonar.sh console
+```
+# update security inbound rules
+
+![image](https://github.com/nitingorte/docker-demo/assets/92674727/46ddbae1-9a51-4433-8f7f-a745d3d9c4b9)
+
+#
 
 
 

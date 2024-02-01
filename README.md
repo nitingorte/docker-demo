@@ -32,6 +32,8 @@ Manage Jenkins --> Available plugins
 3. Docker
 4. Docker pipeline
 5. docker-build-step
+6. SonarQube Scanner
+7. SSH2 easy
 
 # configure jenkins tools
 
@@ -65,7 +67,6 @@ job --> Configuration
   Goals --> clean install -DskipTests
 
 # sonarqube install
-
 ```
 wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.3.0.82913.zip
 sudo apt install unzip
@@ -74,10 +75,12 @@ cd sonarqube-10.3.0.82913.zip/bin/linux-x86-64/
 ./sonar.sh console
 ```
 # update security inbound rules
-
 ![image](https://github.com/nitingorte/docker-demo/assets/92674727/46ddbae1-9a51-4433-8f7f-a745d3d9c4b9)
 
-#
+# sonarqube 
+1. login to http://[ec2-public-ip]:9000 with admin as default username & password.
+2. 
+
 
 
 

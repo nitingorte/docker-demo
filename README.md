@@ -21,33 +21,33 @@ sudo systemctl start jenkins
 sudo systemctl status jenkins
 ```
 # update security inbound rules
-```
+
 ![image](https://github.com/nitingorte/docker-demo/assets/92674727/e02617bd-e4e3-4b85-b193-6be759a423c1)
-```
+
 # add jenkins plugins
-```
+
 Manage Jenkins --> Available plugins
 1. openJDK-native-plugin
 2. Eclipse Temurin installer
 3. Docker
 4. Docker pipeline
 5. docker-build-step
-```
+
 # configure jenkins tools
-```
+
 Manage Jenkins --> Tools
 
 1. JDK installations --> JDK --> Install automatically --> version --> jdk-17
 2. Maven installations --> Maven name --> Install automatically --> version --> latest
 3. Docker installations --> Docker name --> Install automatically --> version --> latest
-```
+
 # create root user on ec2 instance
 ```
 sudo usermod -aG jenkins $USER
 sudo systemctl restart jenkins
 ```
 # jenkins job create & configuration
-```
+
 Dashboard --> Create a job --> name --> Freestyle project --> OK
 job --> Configuration 
 1. General --> Check Discard old builds --> Max of builds to keep --> 2
@@ -57,7 +57,7 @@ job --> Configuration
 3. Build Steps --> Invoke top-level Maven targets
   Maven Version --> select
   Goals --> clean install -DskipTests
-```
+
 
 
 

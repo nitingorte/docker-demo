@@ -53,7 +53,8 @@ job --> Configuration
 1. General --> Check Discard old builds --> Max of builds to keep --> 2
 2. Source Code Management
    a. Git --> Repository URL --> https://<your-token>@<ssh-repo-url> 
-      example.
+
+   example.
    ```
    https://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@github.com/nitingorte/docker-demo.git
    ```

@@ -12,7 +12,7 @@ echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
   https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
   /etc/apt/sources.list.d/jenkins.list > /dev/null
 sudo apt-get update
-sudo apt-get install jenkins
+sudo apt-get install jenkins -y
 ```
 # Start jenkins
 ```
@@ -83,9 +83,11 @@ cd sonarqube-10.3.0.82913/bin/linux-x86-64/
 # Using Docker
 1. Docker install
 ```
-sudo apt update
-sudo apt install docker.io
-sudo snap install docker
+sudo apt-get update
+sudo apt-get install docker.io -y
+sudo usermod -aG docker $USER  # Replace with your system's username, e.g., 'ubuntu'
+newgrp docker
+sudo chmod 777 /var/run/docker.sock
 ```
 2. Jenkins install
 ```

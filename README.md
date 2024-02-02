@@ -43,11 +43,6 @@ Manage Jenkins --> Tools
 2. Maven installations --> Maven name --> Install automatically --> version --> latest
 3. Docker installations --> Docker name --> Install automatically --> version --> latest
 
-# Create root user on ec2 instance
-```
-sudo usermod -aG jenkins $USER
-sudo systemctl restart jenkins
-```
 # Jenkins job create & configuration
 
 Dashboard --> Create a job --> name --> Freestyle project --> OK
@@ -85,6 +80,8 @@ cd sonarqube-10.3.0.82913/bin/linux-x86-64/
 ```
 sudo apt-get update
 sudo apt-get install docker.io -y
+```
+```
 sudo usermod -aG docker $USER  # Replace with your system's username, e.g., 'ubuntu'
 newgrp docker
 sudo chmod 777 /var/run/docker.sock

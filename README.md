@@ -106,13 +106,11 @@ docker run -d -p 9000:9000 --name sonarqube --network jenkins-pipeline sonarqube
 
 3. Dashboard --> Job --> Configuration
    
-  a. Maven
-  
-  ![image](https://github.com/nitingorte/docker-demo/assets/92674727/2a0464c5-1bef-41c7-ade0-ac8d47b951bb)
+    a. Maven
+      ![image](https://github.com/nitingorte/docker-demo/assets/92674727/2a0464c5-1bef-41c7-ade0-ac8d47b951bb)
    
-   b. Sonarqube scanner
-  
-  ![image](https://github.com/nitingorte/docker-demo/assets/92674727/b76ce902-c03b-4b60-b460-d667004e3275)
+    b. Sonarqube scanner
+      ![image](https://github.com/nitingorte/docker-demo/assets/92674727/b76ce902-c03b-4b60-b460-d667004e3275)
 
 
  

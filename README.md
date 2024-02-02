@@ -69,7 +69,7 @@ unzip sonarqube-10.3.0.82913.zip
 cd sonarqube-10.3.0.82913/bin/linux-x86-64/
 ./sonar.sh console
 ```
-# Update security inbound rules
+# Update security inbound rules for sonarqube
 ![image](https://github.com/nitingorte/docker-demo/assets/92674727/46ddbae1-9a51-4433-8f7f-a745d3d9c4b9)
 
 # Sonarqube 
@@ -86,25 +86,30 @@ sudo usermod -aG docker $USER  # Replace with your system's username, e.g., 'ubu
 newgrp docker
 sudo chmod 777 /var/run/docker.sock
 ```
-2. Jenkins install
+2. Sonarqube install
 ```
-sudo docker pull jenkins/jenkins:lts
+docker run -d -p 9000:9000 --name sonarqube --network jenkins-pipeline sonarqube:lts-community
 ```
-3. Sonarqube install
-```
-sudo docker pull sonarqube
-```
-4. Java install
-```
-sudo docker pull openjdk:17-jdk-slim
-```
-5. Start Jenkins
-```
-docker network create jenkins-pipeline
-docker run -d -p 8080:8080 --name jenkins --network jenkins-pipeline -v jenkins_home:/var/jenkins_home jenkins
-docker run -d -p 9000:9000 --name sonarqube --network jenkins-pipeline sonarqube:latest
-```
+# Sonarqube configuration
+1. Manage Jenkins --> Configuration
+![image](https://github.com/nitingorte/docker-demo/assets/92674727/fa38e9f0-444b-481d-9f21-33c3b88d2705)
 
+2. Manage Jenkins --> Tools
+  a. Git
+    ![image](https://github.com/nitingorte/docker-demo/assets/92674727/b5b3fcb1-caeb-4f49-b8da-25ddeac1b019)
+
+  b. Sonarqube 
+    ![image](https://github.com/nitingorte/docker-demo/assets/92674727/7531570d-0a20-4412-ad4b-89d08a3d215e)
+
+  c. Maven
+    ![image](https://github.com/nitingorte/docker-demo/assets/92674727/bd50f1e3-7af2-48ff-a8b3-57f73ac8d49b)
+
+3. Dashboard --> Job --> Configuration
+  a. Maven
+      ![image](https://github.com/nitingorte/docker-demo/assets/92674727/2a0464c5-1bef-41c7-ade0-ac8d47b951bb)
+  b. Sonarqube scanner
+     ![image](https://github.com/nitingorte/docker-demo/assets/92674727/47723822-c5e6-448c-aea1-5dc7f653bf7d)
+ 
 
 
 

@@ -2,20 +2,18 @@ package com.cybage.app.service;
 
 import com.cybage.app.entity.User;
 import com.cybage.app.repository.UserRepository;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
@@ -31,7 +29,7 @@ class UserServiceTest {
     }
 
     @Test
-    void addUser() {
+    void itShouldAddUser() {
         //given
         String testName = "ajay";
 
@@ -57,7 +55,17 @@ class UserServiceTest {
     }
 
     @Test
-    @Disabled
-    void getByName() {
+    void itShouldGetUserByName() {
+        String userName = "nitin";
+        User existingUser = new User();
+        existingUser.setName(userName);
+
+        when(userRepository.findUserByName(userName)).thenReturn(existingUser);
+
+        User result = underTest.getByName(userName);
+        assertNotNull(result);
+        assertEquals(userName, result.getName());
+        
+        verify(userRepository).findUserByName(userName);
     }
 }

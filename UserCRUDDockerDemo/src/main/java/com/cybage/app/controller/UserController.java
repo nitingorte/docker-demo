@@ -23,11 +23,11 @@ public class UserController {
 	
 	@GetMapping("/")
 	public ResponseEntity<List<User>> getAll(){
-		return new ResponseEntity<List<User>>(userService.findAllusers(), HttpStatus.OK);
+		return new ResponseEntity<>(userService.findAllusers(), HttpStatus.OK);
 	}
 
 	@GetMapping("/{name}")
 	public ResponseEntity<User> getUserByName(@PathVariable String name){
-		return new ResponseEntity<User>(userService.getByName(name), HttpStatus.OK);
+		return new ResponseEntity<>(userService.getByName(name), HttpStatus.OK);
 	}
 }

@@ -1,11 +1,44 @@
 node {
-  stage('SCM') {
-    checkout scm
+  environment{
+    APP_NAME = "docker-jenkins-demo"
+    RELEASE = "1.0.0"
+    DOCKER_USER = "nitin2304"
+    DOCKER_PASS = "Windows10"
+    IMAGE_NAME = "${DOCKER_USER}"+"/"+"${APP_NAME}"
+    IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
   }
-  stage('SonarQube Analysis') {
-    def mvn = tool 'maven';
-    withSonarQubeEnv() {
-      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=jenkins-sonar-demo"
+  stages{
+      stage('SCM') {
+        checkout scm
+      }
+      stage('SonarQube Analysis') {
+        def mvn = tool 'maven';
+        withSonarQubeEnv() {
+          sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=jenkins-sonar-demo"
+        }
+      }
+      stage('Build & Push Docker Image'){
+        steps{
+            script{
+                docker.withRegistry('', DOCKER_PASS){
+                docker_image = docker.build "${IMAGE_NAME}"
+            }
+
+            docker.withRegistry('', DOCKER_PASS){
+              docker_image.push("${IMAGE_TAG}")
+              docker_image.push('latest')
+            }
+        }
+      }
+  }
+
+  stage('Cleanup Artifacts'){
+    step{
+      script{
+        sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
+        sh "docker rmi ${IMAGE_NAME}:latest"
+        }
+      }
     }
   }
 }

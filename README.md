@@ -46,6 +46,7 @@ Manage Jenkins --> Tools
 # Jenkins job create & configuration
 
 Dashboard --> Create a job --> name --> Freestyle project --> OK
+
 job --> Configuration 
 1. General --> Check Discard old builds --> Max of builds to keep --> 2
 2. Source Code Management

@@ -46,6 +46,7 @@ Manage Jenkins --> Tools
 # Jenkins job create & configuration
 
 Dashboard --> Create a job --> name --> Freestyle project --> OK
+
 job --> Configuration 
 1. General --> Check Discard old builds --> Max of builds to keep --> 2
 2. Source Code Management
@@ -76,20 +77,21 @@ cd sonarqube-10.3.0.82913/bin/linux-x86-64/
 1. login to http://[ec2-public-ip]:9000 with admin as default username & password.
 
 # Using Docker
-1. Docker install
-```
-sudo apt-get update
-sudo apt-get install docker.io -y
-```
-```
-sudo usermod -aG docker $USER  # Replace with your system's username, e.g., 'ubuntu'
-newgrp docker
-sudo chmod 777 /var/run/docker.sock
-```
-2. Sonarqube install
-```
-docker run -d -p 9000:9000 --name sonarqube --network jenkins-pipeline sonarqube:lts-community
-```
+  1. Docker install
+  ```
+  sudo apt-get update
+  sudo apt-get install docker.io -y
+  ```
+  ```
+  sudo usermod -aG docker $USER  # Replace with your system's username, e.g., 'ubuntu'
+  newgrp docker
+  sudo chmod 777 /var/run/docker.sock
+  ```
+  2. Sonarqube install
+  ```
+  docker network create jenkins-pipeline
+  docker run -d -p 9000:9000 --name sonarqube --network jenkins-pipeline sonarqube:lts-community
+  ```
 # Sonarqube configuration
 1. Manage Jenkins --> Configuration
 ![image](https://github.com/nitingorte/docker-demo/assets/92674727/fa38e9f0-444b-481d-9f21-33c3b88d2705)

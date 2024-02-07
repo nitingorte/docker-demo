@@ -74,17 +74,25 @@
 				 <version>0.8.1</version>
 				 <executions>
 					<execution>
-						<id>jacoco-initialize</id>
+						<id>default-check</id>
 						<goals>
-							<goal>prepare-agent</goal>
+							<goal>check</goal>
 						</goals>
-					</execution>
-					<execution>
-						<id>jacoco-site</id>
-						<phase>package</phase>
-						<goals>
-							<goal>report</goal>
-						</goals>
+						<configuration>
+							<dataFile>${project.build.directory}/jacoco-ut.exec</dataFile>
+							<rules>
+								<rule>
+								<element>BUNDLE</element>
+									<limits>
+										<limit>
+											<counter>INSTRUCTION</counter>
+											<value>COVEREDRATIO</value>
+											<minimum>0.80</minimum>
+										</limit>
+									</limits>
+								</rule>
+							</rules>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
@@ -100,7 +108,8 @@
 		<sonar.language>java</sonar.language>
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
 		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-		<sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
-		<sonar.jacoco.reportsPaths>${project.build.directory}/../target/jacoco-ut.exec</sonar.jacoco.reportsPaths>
+		<sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+		<sonar.jacoco.reportsPaths>${project.build.directory}/jacoco-ut.exec</sonar.jacoco.reportsPaths>
 	</properties>
+	
 </project>

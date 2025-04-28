@@ -55,7 +55,7 @@ job --> Configuration
 
    example.
    ```
-   https://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@github.com/nitingorte/docker-demo.git
+   https://**********************@github.com/nitingorte/docker-demo.git
    ```
    b. Build Triggers --> GitHub hook trigger for GITScm polling
 4. Build Steps --> Invoke top-level Maven targets
